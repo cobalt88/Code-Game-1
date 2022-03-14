@@ -1,0 +1,36 @@
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    color: blue;
+    align-items: center;
+    margin: 0.625rem;
+}
+
+.feedback {
+    display: flex;
+    flex-direction: column;
+    color: blue;
+    align-items: center;
+    margin: 0.625rem auto;
+}
+
+#btn {
+    background-color: blue;
+    align-items: center;
+    color: white;
+    border-radius: 5px;
+    margin: 20px 20px 0 20px;
+    padding: 5px 10px;
+    border: none;
+    box-shadow: rgba (0, 0, 0, 0.1);
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+
+}
