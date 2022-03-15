@@ -88,6 +88,7 @@ function setStatusClass(element, correct) {
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
+
 }
 // ! View highscores function
 viewHighscoresElement.addEventListener('click', viewHighscores)
@@ -101,6 +102,9 @@ function viewHighscores() {
     questionContainerElement.classList.add('hide')
     backButton.classList.remove('hide')
     clearButton.classList.remove('hide')
+    highscoresContainerElement.classList.add('hide')
+    finishedContainerElement.classList.add('hide')
+    subButton.classList.add('hide')
     resetState()
 }
 
@@ -116,6 +120,8 @@ function returnbackbutton() {
 }
 
 // ! get scores function 
+subButton.addEventListener('click', viewHighscores)
+
 function getInitialsPage() {
     startingPageElement.classList.add('hide')
     viewHighscoresElement.classList.remove('hide')
@@ -125,13 +131,14 @@ function getInitialsPage() {
     clearButton.classList.add('hide')
     finishedContainerElement.classList.remove('hide')
     subButton.classList.remove('hide')
-
+    resetState()
 }
 
 
 
 
-// ! 
+// !  save scores
+
 
 // ! Questions start
 const questions = [{
