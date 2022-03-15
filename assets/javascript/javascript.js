@@ -1,10 +1,11 @@
 // ! functions to get elements
 var startButton = document.getElementById('start-btn');
+var nextButton = document.getElementById('next-btn');
 var timer = document.getElementById('timeDisplay')
 var viewHighscoresElement = document.getElementById('viewHighscores')
 var questionContainerElement = document.getElementById('question-container')
 var startingPageElement = document.getElementById('starting-container')
-var questionElement = document.getElementById('questions')
+var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
 
 var shuffledQuestions, currentQuestionIndex
@@ -44,11 +45,12 @@ function startGame() {
 
 //  ! next question function
 function setNextQuestion() {
+    resetState()
     showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
 function showQuestion(question) {
-    questionContainerElement.innerText = question.question
+    questionElement.innerText = question.question
     question.answers.forEach(answer => {
         const button = document.createElement('button')
         button.innerText = answer.text
@@ -60,10 +62,37 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
     })
 }
+// ! reset function
+function resetState() {
+    nextButton.classList.add('hide')
+    while (answerButtonsElement.firstChild) {
+        answerButtonsElement.removeChild(answerButtonsElement.firstChild)
 
+    }
+}
 //  ! select answer function
-function selectAnswer() {}
+function selectAnswer(event) {
+    const selectedButton = event.target
+    const correct = selectedButton.dataset.correct
+    setStatusClass(document.body, correct)
+    Array.from(answerButtonsElement.children).forEach(button => {
+        setStatusClass(button, button.dataset.correct)
+    })
+}
 
+function setStatusClass(element, correect) {
+    clearStatusClass(element)
+    if (correct) {
+        element.classList.add('correct')
+    } else {
+        element.classList.add('wrong')
+    }
+}
+
+function clearStatusClass(element) {
+    element.classList.remove('correct')
+    element.classList.remove('wrong')
+}
 // ! View highscores function
 function viewHighscores() {}
 
