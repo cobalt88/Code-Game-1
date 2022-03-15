@@ -27,7 +27,6 @@ function countdown() {
             timer.textContent = (' ');
             clearInterval(timeInterval)
         }
-        console.log(countdown)
     }, 1000)
 }
 
@@ -80,9 +79,14 @@ function resetState() {
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
+    if (correct === undefined) {
+        timeRemaing -= 10
+    }
+    document.querySelectorAll('.btn').disabled = true;
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
+
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
@@ -197,26 +201,26 @@ const questions = [{
             }
         ]
     },
-    // {
-    //     question: 'Arrays in Javascript can be used to store_____.',
-    //     answers: [{
-    //             text: 'numbers and strings',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'other arrays',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'booleans',
-    //             correct: false
-    //         },
-    //         {
-    //             numbers: 'all of the above',
-    //             correct: true
-    //         }
-    //     ]
-    // },
+    {
+        question: 'Arrays in Javascript can be used to store_____.',
+        answers: [{
+                text: 'numbers and strings',
+                correct: false
+            },
+            {
+                text: 'other arrays',
+                correct: false
+            },
+            {
+                text: 'booleans',
+                correct: false
+            },
+            {
+                numbers: 'all of the above',
+                correct: true
+            }
+        ]
+    },
     // {
     //     question: 'String values must be enclosed within ____ when being assigned to variables.',
     //     answers: [{
