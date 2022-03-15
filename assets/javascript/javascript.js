@@ -1,15 +1,17 @@
 // ! functions to get elements
+var backButton = document.getElementById('back-btn');
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
+var subButton = document.getElementById('sub-btn');
+var clearButton = document.getElementById('clear-btn');
 var timer = document.getElementById('timeDisplay')
-var viewHighscoresElement = document.getElementById('viewHighscores')
+var viewHighscoresElement = document.getElementById('viewHighscore')
 var questionContainerElement = document.getElementById('question-container')
 var startingPageElement = document.getElementById('starting-container')
 var questionElement = document.getElementById('question')
 var answerButtonsElement = document.getElementById('answer-buttons')
-
+var highscoresContainerElement = document.getElementById('highscore-container')
 var shuffledQuestions, currentQuestionIndex
-
 
 
 
@@ -105,7 +107,19 @@ function clearStatusClass(element) {
     element.classList.remove('wrong')
 }
 // ! View highscores function
-function viewHighscores() {}
+viewHighscoresElement.addEventListener('click', viewHighscores)
+
+function viewHighscores() {
+    startButton.classList.add('hide')
+    startingPageElement.classList.add('hide')
+    viewHighscoresElement.classList.remove('hide')
+    highscoresContainerElement.classList.remove('hide')
+    backButton.classList.remove('hide')
+    clearButton.classList.remove('hide')
+
+}
+
+
 
 // ! 
 
