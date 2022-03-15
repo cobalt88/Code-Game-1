@@ -2,56 +2,35 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" , initial-scale="1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie-edge" />
-    <title>Code Game</title>
-    <link rel="stylesheet" href="./assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="/assets/css/style.css" rel="stylesheet">
+    <title>Quiz App</title>
 </head>
 
 <body>
     <div class="container">
-        <div id="highscore">View Highscores</div>
-        <div id="timer">Timer: <span>0</span></div>
-    </div>
-    <div class="wrapper">
-        <section id="intro">
-            <h2>Coding Quiz Challenge</h2>
-            <p>
-                Try to answer the following code-related questions within the time limit.
-                Keep in mind that incorrect answers will penalize your score/time by ten seconds.
-            </p>
-            <button id="btn">Start Quiz</button>
-        </section>
-
-        <section id="quiz">
-            <p id="question">place question here</p>
-            <div id="answersList"> </div>
-            <div id="scoreIndicator" class="hide">
-                <p>&nbsp;</p>
+        <header class="head-flex">
+            <a id="view_highscore_link" href="#">View Highscores</a>
+            <span id="time">Time: <span id="time_display">0</span></span>
+        </header>
+        <div id="question-container" class="hide">
+            <div id="question">Question</div>
+            <div id="answer-buttons" class="btn-grid">
+                <button class="btn">Answer 1</button>
+                <button class="btn">Answer 2</button>
+                <button class="btn">Answer 3</button>
+                <button class="btn">Answer 4</button>
             </div>
-        </section>
-
-        <section id="finish" class="hide">
-            <h1>Finished</h1>
-            <p>Your final score is&nbsp;<span id="score"></span></p>
-            <div id="records">
-                <p>Enter initials: </p> <input type="text"> <button>Submit</button>
-            </div>
-        </section>
-        <section id="highScores" class="hide">
-            <h1>High Scores</h1>
-            <div>
-
-            </div>
-            <button id="reset">Go Back</button> <button id="clearScores">Clear Highscores</button>
-        </section>
-
+        </div>
+        <div class="controls">
+            <button id="start-btn" class="start-btn btn">Start</button>
+            <button id="next-btn" class="next-btn btn hide">Next</button>
+        </div>
     </div>
 
-
-    <script src="./assets/javascript/javascript.js">
-    </script>
+    <script src="/assets/javascript/javascript.js"></script>
 </body>
 
 </html>

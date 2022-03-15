@@ -1,60 +1,94 @@
-.container {
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    font-family: Gotham Rounded;
+}
+
+:root {
+    --hue-neutral: 200;
+    --hue-wrong: 0;
+    --hue-correct: 145;
+}
+
+.head-flex {
     display: flex;
-    flex-direction: row;
     justify-content: space-between;
+    padding-bottom: 30px;
 }
 
-.wrapper {
+body {
+    --hue: var(--hue-neutral);
+    padding: 0;
+    margin: 0;
     display: flex;
-    flex-direction: column;
-    color: blue;
+    width: 100vw;
+    height: 100vh;
+    justify-content: center;
     align-items: center;
-    text-align: center;
-    margin: 0.625rem;
+    background-color: hsl(var(--hue), 100%, 20%);
 }
 
-.feedback {
+body.correct {
+    --hue: var(--hue-correct);
+}
+
+body.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.container {
+    width: 800px;
+    max-width: 80%;
+    background-color: white;
+    border-radius: 5px;
+    padding: 10px;
+    box-shadow: 0 0 10px 2px;
+}
+
+.btn-grid {
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.btn {
+    --hue: var(--hue-neutral);
+    border: 1px solid hsl(var(--hue), 100%, 30%);
+    background-color: hsl(var(--hue), 100%, 50%);
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    outline: none;
+}
+
+.btn:hover {
+    border-color: black;
+}
+
+.btn.correct {
+    --hue: var(--hue-correct);
+    color: black;
+}
+
+.btn.wrong {
+    --hue: var(--hue-wrong);
+}
+
+.start-btn,
+.next-btn {
+    font-size: 1.5rem;
+    font-weight: bold;
+    padding: 10px 20px;
+}
+
+.controls {
     display: flex;
-    flex-direction: column;
-    color: blue;
+    justify-content: center;
     align-items: center;
-    margin: 0.625rem auto;
 }
-
-#btn {
-    background-color: blue;
-    align-items: center;
-    color: white;
-    border-radius: 5px;
-    margin: 20px 20px 0 20px;
-    padding: 5px 10px;
-    border: none;
-    box-shadow: rgba (0, 0, 0, 0.1);
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-}
-
-button {
-    background-color: blue;
-    align-items: center;
-    color: white;
-    border-radius: 5px;
-    margin: 20px 20px 0 20px;
-    padding: 5px 10px;
-    border: none;
-    box-shadow: rgba (0, 0, 0, 0.1);
-    display: inline-block;
-    font-size: 16px;
-    cursor: pointer;
-
-}
-
 
 .hide {
-    display: none;
-}
-
-#quiz {
     display: none;
 }
