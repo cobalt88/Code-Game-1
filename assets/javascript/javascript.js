@@ -4,18 +4,32 @@ var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
 var subButton = document.getElementById('sub-btn');
 var clearButton = document.getElementById('clear-btn');
-var timer = document.getElementById('timeDisplay')
-var viewHighscoresElement = document.getElementById('viewHighscore')
-var questionContainerElement = document.getElementById('question-container')
-var startingPageElement = document.getElementById('starting-container')
-var questionElement = document.getElementById('question')
-var answerButtonsElement = document.getElementById('answer-buttons')
-var highscoresContainerElement = document.getElementById('highscore-container')
-var finishedContainerElement = document.getElementById('finished-container')
-var shuffledQuestions, currentQuestionIndex
+var timer = document.getElementById('timeDisplay');
+var viewHighscoresElement = document.getElementById('viewHighscore');
+var questionContainerElement = document.getElementById('question-container');
+var startingPageElement = document.getElementById('starting-container');
+var questionElement = document.getElementById('question');
+var answerButtonsElement = document.getElementById('answer-buttons');
+var highscoresContainerElement = document.getElementById('highscore-container');
+var finishedContainerElement = document.getElementById('finished-container');
+var shuffledQuestions, currentQuestionIndex;
 
+var score = 0;
+var timeRemaing = 100;
 
-
+// ! timer function
+function countdown() {
+    var timeInterval = setInterval(function () {
+        if (timeRemaing > 0) {
+            timeRemaing--;
+            timer.textContent = timeRemaing;
+        } else {
+            timer.textContent = (' ');
+            clearInterval(timeInterval)
+        }
+        console.log(countdown)
+    }, 1000)
+}
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -30,7 +44,8 @@ function startGame() {
     shuffledQuestions = questions.sort(() => Math.random() - .5)
     currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
-    setNextQuestion()
+    setNextQuestion();
+    countdown();
 }
 
 //  ! next question function
@@ -75,6 +90,7 @@ function selectAnswer(event) {
         getInitialsPage()
     }
 }
+
 //  !  function to display feedback
 function setStatusClass(element, correct) {
     clearStatusClass(element)
@@ -242,20 +258,3 @@ const questions = [{
     //     ]
     // },
 ]
-// ! Quetions End
-
-// // ! timer function
-// function countdown() {
-//     var startingtimer = 10;
-
-//     var testtime = setInterval(function () {
-//         console.log(testtime)
-//         timer.innerHTML = startingtimer
-//         if (startingtimer > 0) {
-//             --startingtimer;
-//         } else {
-//             clearInterval(testtime)
-//         }
-//     }, 1000)
-// }
-// console.log(timer)
