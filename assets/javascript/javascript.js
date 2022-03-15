@@ -78,9 +78,10 @@ function selectAnswer(event) {
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
+    nextButton.classList.remove('hide')
 }
 
-function setStatusClass(element, correect) {
+function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
         element.classList.add('correct')
