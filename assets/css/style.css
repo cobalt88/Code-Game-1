@@ -30,7 +30,7 @@ body {
 }
 
 body.correct {
-    background-color: (--correct-color);
+    background-color: var(--correct-color);
 }
 
 body.wrong {
@@ -79,7 +79,10 @@ body.wrong {
 }
 
 .start-btn,
-.next-btn {
+.next-btn,
+.sub-btn,
+.back-btn,
+.clear-btn {
     font-size: 1rem;
     padding: 5px 10px;
 }
@@ -89,6 +92,7 @@ body.wrong {
     justify-content: center;
     align-items: center;
 }
+
 
 .hide {
     display: none;

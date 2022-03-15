@@ -1,17 +1,73 @@
 // ! functions to get elements
-const startbutton = document.getElementById('start-btn')
+var startButton = document.getElementById('start-btn');
+var timer = document.getElementById('timeDisplay')
+var viewHighscoresElement = document.getElementById('viewHighscores')
+var questionContainerElement = document.getElementById('question-container')
+var startingPageElement = document.getElementById('starting-container')
+var questionElement = document.getElementById('questions')
+var answerButtonsElement = document.getElementById('answer-buttons')
+
+var shuffledQuestions, currentQuestionIndex
+
+
+
+
+startButton.addEventListener('click', startGame)
 
 // ! start game function
 function startGame() {
-
+    startButton.classList.add('hide')
+    startingPageElement.classList.add('hide')
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
+    questionContainerElement.classList.remove('hide')
+    setNextQuestion()
+    // countdown()
 }
 
+// // ! timer function
+// function countdown() {
+//     var startingtimer = 10;
+
+//     var testtime = setInterval(function () {
+//         console.log(testtime)
+//         timer.innerHTML = startingtimer
+//         if (startingtimer > 0) {
+//             --startingtimer;
+//         } else {
+//             clearInterval(testtime)
+//         }
+//     }, 1000)
+// }
+// console.log(timer)
+
+
 //  ! next question function
-function setNextQuestion() {}
+function setNextQuestion() {
+    showQuestion(shuffledQuestions[currentQuestionIndex])
+}
+
+function showQuestion(question) {
+    questionContainerElement.innerText = question.question
+    question.answers.forEach(answer => {
+        const button = document.createElement('button')
+        button.innerText = answer.text
+        button.classList.add('btn')
+        if (answer.correct) {
+            button.dataset.correct = answer.correct
+        }
+        button.addEventListener('click', selectAnswer)
+        answerButtonsElement.appendChild(button)
+    })
+}
 
 //  ! select answer function
 function selectAnswer() {}
 
+// ! View highscores function
+function viewHighscores() {}
+
+// ! 
 
 // ! Questions start
 const questions = [{
