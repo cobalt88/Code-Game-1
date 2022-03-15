@@ -49,3 +49,12 @@ button {
     cursor: pointer;
 
 }
+
+
+.hide {
+    display: none;
+}
+
+#quiz {
+    display: none;
+}
