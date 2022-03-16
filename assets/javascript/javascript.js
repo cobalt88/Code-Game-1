@@ -90,13 +90,11 @@ function selectAnswer(event) {
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
-
     } else {
         getInitialsPage()
     }
 }
 
-// function disableBtn() {}
 
 //  !  function to display feedback
 function setStatusClass(element, correct) {
@@ -145,15 +143,15 @@ function returnbackbutton() {
 
 function saveHighscores() {
     const yourinitials = document.getElementById('initials-Input')
-    const text = document.getElementById('initials')
+    const scoreDisplay = document.getElementById('scoreDisplay')
     // const submitButton = document.getElementById('sub-btn')
     const storedInput = localStorage.getItem('textinput')
     if (storedInput) {
-        text.textContent = storedInput
+        scoreDisplay.textContent = storedInput
     }
-    console.log(letter.target.value)
+    console.log(letter)
     yourinitials.addEventListener('input', letter => {
-        text.textContent = letter.target.value
+        scoreDisplay.textContent = letter.target.value
     })
     subButton.addEventListener('click', saveHighscores)
 }
