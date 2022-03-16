@@ -144,7 +144,6 @@ function returnbackbutton() {
 function saveHighscores() {
     const yourinitials = document.getElementById('initials-Input')
     const scoreDisplay = document.getElementById('scoreDisplay')
-    // const submitButton = document.getElementById('sub-btn')
     const storedInput = localStorage.getItem('textinput')
     if (storedInput) {
         scoreDisplay.textContent = storedInput
@@ -238,44 +237,44 @@ const questions = [{
             }
         ]
     },
-    // {
-    //     question: 'String values must be enclosed within ____ when being assigned to variables.',
-    //     answers: [{
-    //             text: 'commas',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'quotes',
-    //             correct: true
-    //         },
-    //         {
-    //             text: 'brackets',
-    //             correct: false
-    //         },
-    //         {
-    //             numbers: 'numbers',
-    //             correct: false
-    //         }
-    //     ]
-    // },
-    // {
-    //     question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
-    //     answers: [{
-    //             text: 'console.log()',
-    //             correct: true
-    //         },
-    //         {
-    //             text: 'terminal',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'for loops',
-    //             correct: false
-    //         },
-    //         {
-    //             numbers: 'javascript',
-    //             correct: false
-    //         }
-    //     ]
-    // },
+    {
+        question: 'String values must be enclosed within ____ when being assigned to variables.',
+        answers: [{
+                text: 'commas',
+                correct: false
+            },
+            {
+                text: 'quotes',
+                correct: true
+            },
+            {
+                text: 'brackets',
+                correct: false
+            },
+            {
+                numbers: 'numbers',
+                correct: false
+            }
+        ]
+    },
+    {
+        question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
+        answers: [{
+                text: 'console.log()',
+                correct: true
+            },
+            {
+                text: 'terminal',
+                correct: false
+            },
+            {
+                text: 'for loops',
+                correct: false
+            },
+            {
+                numbers: 'javascript',
+                correct: false
+            }
+        ]
+    },
 ]
