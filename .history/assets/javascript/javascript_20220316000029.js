@@ -1,5 +1,5 @@
 // ! functions to get elements
-var backButton = document.getElementById('back-btn');
+let backButton = document.getElementById('back-btn');
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
 var subButton = document.getElementById('sub-btn');
@@ -72,7 +72,6 @@ function showQuestion(question) {
 // ! reset function
 function resetState() {
     clearStatusClass(document.body)
-
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -129,7 +128,6 @@ function viewHighscores() {
     finishedContainerElement.classList.add('hide')
     subButton.classList.add('hide')
     resetState()
-
 }
 
 function returnBackButton() {
@@ -143,6 +141,19 @@ function returnBackButton() {
     resetState()
 }
 
+function saveHighscores() {
+    const yourInitials = document.getElementById('initials-Input')
+    const scoreDisplay = document.getElementById('scoreDisplay')
+    const storedInput = localStorage.getItem('textInput')
+    if (storedInput) {
+        scoreDisplay.textContent = storedInput
+    }
+    console.log(letter)
+    yourInitials.addEventListener('input', letter => {
+        scoreDisplay.textContent = letter.target.value
+    })
+    subButton.addEventListener('click', saveHighscores)
+}
 
 // ! get scores function 
 subButton.addEventListener('click', viewHighscores)
@@ -163,21 +174,7 @@ function getInitialsPage() {
 
 
 // !  save scores
-var scoreList = document.getElementById('scoresContainer')
-var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
-for (i = 0; i < totalScores.length; i++) {
-    submit.document.createElement("li")
-    submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
-    scoreList.appendChild(submit)
-}
-
-function clearPage() {
-    clearButton.onclick = function () {
-        localStorage.clear()
-        scoreList.innerHTML = " "
-    }
-}
 
 // ! Questions start
 const questions = [{

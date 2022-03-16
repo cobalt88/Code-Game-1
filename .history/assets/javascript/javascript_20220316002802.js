@@ -19,6 +19,7 @@ var shuffledQuestions, currentQuestionIndex;
 
 var score = 0;
 var timeRemaining = 100;
+var timeInterval = timeInterval
 
 // ! timer function
 function countdown() {
@@ -72,7 +73,7 @@ function showQuestion(question) {
 // ! reset function
 function resetState() {
     clearStatusClass(document.body)
-
+    clearInterval(timeInterval)
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -129,7 +130,6 @@ function viewHighscores() {
     finishedContainerElement.classList.add('hide')
     subButton.classList.add('hide')
     resetState()
-
 }
 
 function returnBackButton() {
@@ -200,84 +200,84 @@ const questions = [{
             }
         ]
     },
-    {
-        question: 'The condition in an if/Else statement is enclosed with_____.',
-        answers: [{
-                text: 'quotes',
-                correct: false
-            },
-            {
-                text: 'curly brackets',
-                correct: false
-            },
-            {
-                text: 'parenthesis',
-                correct: true
-            },
-            {
-                numbers: 'square brackets',
-                correct: false
-            }
-        ]
-    },
-    {
-        question: 'Arrays in Javascript can be used to store_____.',
-        answers: [{
-                text: 'numbers and strings',
-                correct: false
-            },
-            {
-                text: 'other arrays',
-                correct: false
-            },
-            {
-                text: 'booleans',
-                correct: false
-            },
-            {
-                numbers: 'all of the above',
-                correct: true
-            }
-        ]
-    },
-    {
-        question: 'String values must be enclosed within ____ when being assigned to variables.',
-        answers: [{
-                text: 'commas',
-                correct: false
-            },
-            {
-                text: 'quotes',
-                correct: true
-            },
-            {
-                text: 'brackets',
-                correct: false
-            },
-            {
-                numbers: 'numbers',
-                correct: false
-            }
-        ]
-    },
-    {
-        question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
-        answers: [{
-                text: 'console.log()',
-                correct: true
-            },
-            {
-                text: 'terminal',
-                correct: false
-            },
-            {
-                text: 'for loops',
-                correct: false
-            },
-            {
-                numbers: 'javascript',
-                correct: false
-            }
-        ]
-    },
+    //     {
+    //         question: 'The condition in an if/Else statement is enclosed with_____.',
+    //         answers: [{
+    //                 text: 'quotes',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'curly brackets',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'parenthesis',
+    //                 correct: true
+    //             },
+    //             {
+    //                 numbers: 'square brackets',
+    //                 correct: false
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         question: 'Arrays in Javascript can be used to store_____.',
+    //         answers: [{
+    //                 text: 'numbers and strings',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'other arrays',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'booleans',
+    //                 correct: false
+    //             },
+    //             {
+    //                 numbers: 'all of the above',
+    //                 correct: true
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         question: 'String values must be enclosed within ____ when being assigned to variables.',
+    //         answers: [{
+    //                 text: 'commas',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'quotes',
+    //                 correct: true
+    //             },
+    //             {
+    //                 text: 'brackets',
+    //                 correct: false
+    //             },
+    //             {
+    //                 numbers: 'numbers',
+    //                 correct: false
+    //             }
+    //         ]
+    //     },
+    //     {
+    //         question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
+    //         answers: [{
+    //                 text: 'console.log()',
+    //                 correct: true
+    //             },
+    //             {
+    //                 text: 'terminal',
+    //                 correct: false
+    //             },
+    //             {
+    //                 text: 'for loops',
+    //                 correct: false
+    //             },
+    //             {
+    //                 numbers: 'javascript',
+    //                 correct: false
+    //             }
+    //         ]
+    //     },
 ]

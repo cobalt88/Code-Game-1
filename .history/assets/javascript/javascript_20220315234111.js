@@ -18,14 +18,14 @@ var scoreDisplayElement = document.getElementById('scoreDisplay')
 var shuffledQuestions, currentQuestionIndex;
 
 var score = 0;
-var timeRemaining = 100;
+var timeRemaing = 100;
 
 // ! timer function
 function countdown() {
     var timeInterval = setInterval(function () {
-        if (timeRemaining > 0) {
-            timeRemaining--;
-            timer.textContent = timeRemaining;
+        if (timeRemaing > 0) {
+            timeRemaing--;
+            timer.textContent = timeRemaing;
         } else {
             timer.textContent = (' ');
             clearInterval(timeInterval)
@@ -72,7 +72,6 @@ function showQuestion(question) {
 // ! reset function
 function resetState() {
     clearStatusClass(document.body)
-
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
@@ -83,7 +82,7 @@ function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
     if (correct === undefined) {
-        timeRemaining -= 10
+        timeRemaing -= 10
     }
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
@@ -114,7 +113,7 @@ function clearStatusClass(element) {
 }
 // ! View highscores function
 viewHighscoresElement.addEventListener('click', viewHighscores)
-backButton.addEventListener('click', returnBackButton)
+backButton.addEventListener('click', returnbackbutton)
 
 
 function viewHighscores() {
@@ -129,10 +128,9 @@ function viewHighscores() {
     finishedContainerElement.classList.add('hide')
     subButton.classList.add('hide')
     resetState()
-
 }
 
-function returnBackButton() {
+function returnbackbutton() {
     startButton.classList.remove('hide')
     startingPageElement.classList.remove('hide')
     viewHighscoresElement.classList.remove('hide')
@@ -143,6 +141,19 @@ function returnBackButton() {
     resetState()
 }
 
+function saveHighscores() {
+    const yourinitials = document.getElementById('initials-Input')
+    const scoreDisplay = document.getElementById('scoreDisplay')
+    const storedInput = localStorage.getItem('textinput')
+    if (storedInput) {
+        scoreDisplay.textContent = storedInput
+    }
+    console.log(letter)
+    yourinitials.addEventListener('input', letter => {
+        scoreDisplay.textContent = letter.target.value
+    })
+    subButton.addEventListener('click', saveHighscores)
+}
 
 // ! get scores function 
 subButton.addEventListener('click', viewHighscores)
@@ -163,21 +174,7 @@ function getInitialsPage() {
 
 
 // !  save scores
-var scoreList = document.getElementById('scoresContainer')
-var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
-for (i = 0; i < totalScores.length; i++) {
-    submit.document.createElement("li")
-    submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
-    scoreList.appendChild(submit)
-}
-
-function clearPage() {
-    clearButton.onclick = function () {
-        localStorage.clear()
-        scoreList.innerHTML = " "
-    }
-}
 
 // ! Questions start
 const questions = [{
