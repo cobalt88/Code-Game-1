@@ -20,7 +20,7 @@ This is a coding quiz used to test your knowledge on different language's. Curre
 ## Installation
 No Installation Necessary simply click on the following link to view the deployed website:
 
-
+https://brainybrian316.github.io/Code-Game/
 
 ## Usage
 A application used to take a coding quiz and test your knowledge on various languages. 
