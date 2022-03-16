@@ -1,0 +1,13 @@
+btn-grid
+btn
+highscore-container
+scoresContainer
+scoreDisplay
+br
+back-btn
+start-btn
+next-btn
+sub-btn
+clear-btn
+javascript
+AmazingFeature

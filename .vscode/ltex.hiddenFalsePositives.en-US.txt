@@ -1,0 +1,2 @@
+{"rule":"EN_A_VS_AN","sentence":"^\\QQuiz App </head> <body> <div class=\"container\"> <header class=\"head-flex\"> <a id=\"viewHighscore\" href=\"#\">View Highscores</a> <span id=\"time\">Time: <span id=\"timeDisplay\">0</span> </header> <!-- !\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QQuiz App </head> <body> <div class=\"container\"> <header class=\"head-flex\"> <a id=\"viewHighscore\" href=\"#\">View Highscores</a> <span id=\"time\">Time: <span id=\"timeDisplay\">0</span> </header> <!-- !\\E$"}

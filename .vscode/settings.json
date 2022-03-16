@@ -1,0 +1,28 @@
+{
+    "cSpell.ignoreWords": [
+        "highscores"
+    ],
+    "cSpell.customDictionaries": {
+        "custom-dictionary-workspace": {
+            "name": "custom-dictionary-workspace",
+            "path": "${workspaceFolder:Code-Game}/.cspell/custom-dictionary-workspace.txt",
+            "addWords": true,
+            "scope": "workspace"
+        }
+    },
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/.cspell": true,
+        ".cspell": true,
+        "**/.history": true,
+        ".history": true,
+        "**/.vscode": true,
+        ".vscode": true
+    },
+    "explorerExclude.backup": null
+}
