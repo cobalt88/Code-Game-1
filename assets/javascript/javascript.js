@@ -12,8 +12,11 @@ var questionElement = document.getElementById('question');
 var answerButtonsElement = document.getElementById('answer-buttons');
 var highscoresContainerElement = document.getElementById('highscore-container');
 var finishedContainerElement = document.getElementById('finished-container');
+var scoresContainerElement = document.getElementById('scoresContainer')
+var scoreDisplayElement = document.getElementById('scoreDisplay')
+
 var shuffledQuestions, currentQuestionIndex;
-console.log(disableBtn());
+
 var score = 0;
 var timeRemaing = 100;
 
@@ -87,15 +90,13 @@ function selectAnswer(event) {
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
-        disableBtn()
+
     } else {
         getInitialsPage()
     }
 }
 
-function disableBtn() {
-    document.querySelectorAll('answer-buttons').disabled = true;
-}
+// function disableBtn() {}
 
 //  !  function to display feedback
 function setStatusClass(element, correct) {
@@ -115,6 +116,7 @@ function clearStatusClass(element) {
 // ! View highscores function
 viewHighscoresElement.addEventListener('click', viewHighscores)
 backButton.addEventListener('click', returnbackbutton)
+
 
 function viewHighscores() {
     startButton.classList.add('hide')
@@ -139,6 +141,21 @@ function returnbackbutton() {
     backButton.classList.add('hide')
     clearButton.classList.add('hide')
     resetState()
+}
+
+function saveHighscores() {
+    const yourinitials = document.getElementById('initials-Input')
+    const text = document.getElementById('initials')
+    // const submitButton = document.getElementById('sub-btn')
+    const storedInput = localStorage.getItem('textinput')
+    if (storedInput) {
+        text.textContent = storedInput
+    }
+    console.log(letter.target.value)
+    yourinitials.addEventListener('input', letter => {
+        text.textContent = letter.target.value
+    })
+    subButton.addEventListener('click', saveHighscores)
 }
 
 // ! get scores function 
