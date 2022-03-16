@@ -87,6 +87,7 @@ function selectAnswer(event) {
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
+        disableBtn()
     } else {
         getInitialsPage()
     }
