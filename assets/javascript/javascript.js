@@ -13,7 +13,7 @@ var answerButtonsElement = document.getElementById('answer-buttons');
 var highscoresContainerElement = document.getElementById('highscore-container');
 var finishedContainerElement = document.getElementById('finished-container');
 var shuffledQuestions, currentQuestionIndex;
-
+console.log(disableBtn());
 var score = 0;
 var timeRemaing = 100;
 
@@ -72,7 +72,6 @@ function resetState() {
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
-
     }
 }
 //  ! select answer function
@@ -82,17 +81,19 @@ function selectAnswer(event) {
     if (correct === undefined) {
         timeRemaing -= 10
     }
-    document.querySelectorAll('.btn').disabled = true;
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
-
     })
     if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
         getInitialsPage()
     }
+}
+
+function disableBtn() {
+    document.querySelectorAll('answer-buttons').disabled = true;
 }
 
 //  !  function to display feedback
