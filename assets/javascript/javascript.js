@@ -17,21 +17,7 @@ var scoreDisplayElement = document.getElementById('scoreDisplay')
 
 var shuffledQuestions, currentQuestionIndex;
 
-var score = 0;
-var timeRemaing = 100;
 
-// ! timer function
-function countdown() {
-    var timeInterval = setInterval(function () {
-        if (timeRemaing > 0) {
-            timeRemaing--;
-            timer.textContent = timeRemaing;
-        } else {
-            timer.textContent = (' ');
-            clearInterval(timeInterval)
-        }
-    }, 1000)
-}
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
@@ -79,9 +65,6 @@ function resetState() {
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
-    if (correct === undefined) {
-        timeRemaing -= 10
-    }
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
@@ -139,39 +122,8 @@ function returnbackbutton() {
     resetState()
 }
 
-function saveHighscores() {
-    const yourinitials = document.getElementById('initials-Input')
-    const scoreDisplay = document.getElementById('scoreDisplay')
-    const storedInput = localStorage.getItem('textinput')
-    if (storedInput) {
-        scoreDisplay.textContent = storedInput
-    }
-    console.log(letter)
-    yourinitials.addEventListener('input', letter => {
-        scoreDisplay.textContent = letter.target.value
-    })
-    subButton.addEventListener('click', saveHighscores)
-}
-
-// ! get scores function 
-subButton.addEventListener('click', viewHighscores)
-
-function getInitialsPage() {
-    startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    questionContainerElement.classList.add('hide')
-    backButton.classList.add('hide')
-    clearButton.classList.add('hide')
-    finishedContainerElement.classList.remove('hide')
-    subButton.classList.remove('hide')
-    resetState()
-}
 
 
-
-
-// !  save scores
 
 
 // ! Questions start
