@@ -16,7 +16,6 @@ var scoresContainerElement = document.getElementById('scoresContainer')
 var scoreDisplayElement = document.getElementById('scoreDisplay')
 
 
-
 var shuffledQuestions, currentQuestionIndex;
 
 var score = 0;

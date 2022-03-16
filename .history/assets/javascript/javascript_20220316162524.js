@@ -15,7 +15,7 @@ var finishedContainerElement = document.getElementById('finished-container');
 var scoresContainerElement = document.getElementById('scoresContainer')
 var scoreDisplayElement = document.getElementById('scoreDisplay')
 
-
+var liveServer = "hello world";
 
 var shuffledQuestions, currentQuestionIndex;
 
