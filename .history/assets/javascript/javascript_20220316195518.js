@@ -1,4 +1,5 @@
 // ! functions to get elements
+var backButton = document.getElementById('back-btn');
 var startButton = document.getElementById('start-btn');
 var nextButton = document.getElementById('next-btn');
 var subButton = document.getElementById('sub-btn');
@@ -14,41 +15,27 @@ var finishedContainerElement = document.getElementById('finished-container');
 var scoresContainerElement = document.getElementById('scoresContainer')
 var scoreDisplayElement = document.getElementById('scoreDisplay')
 
+var shuffledQuestions, currentQuestionIndex;
 
-
-
-
-var state = {
-    element: {
-        backButton: document.getElementById('back-btn')
-    },
-    quizState: {
-        score: 0,
-        timeRemaining: 10,
-        timeInterval: null,
-        shuffledQuestions: null,
-        currentQuestionIndex: null
-    }
-}
+var score = 0;
+var timeRemaining = 100;
 
 // ! timer function
 function countdown() {
-    state.quizState.timeRemaining = 10;
-    state.quizState.timeInterval = setInterval(function () {
-        if (state.quizState.timeRemaining > 0) {
-            state.quizState.timeRemaining--;
-            timer.textContent = state.quizState.timeRemaining;
+    var timeInterval = setInterval(function () {
+        if (timeRemaining > 0) {
+            timeRemaining--;
+            timer.textContent = timeRemaining;
         } else {
             timer.textContent = (' ');
-            clearInterval(state.quizState.timeInterval)
-            getInitialsPage()
+            clearInterval(timeInterval)
         }
     }, 1000)
 }
 
 startButton.addEventListener('click', startGame)
 nextButton.addEventListener('click', () => {
-    state.quizState.currentQuestionIndex++
+    currentQuestionIndex++
     setNextQuestion()
 })
 
@@ -56,8 +43,8 @@ nextButton.addEventListener('click', () => {
 function startGame() {
     startButton.classList.add('hide')
     startingPageElement.classList.add('hide')
-    state.quizState.shuffledQuestions = questions.sort(() => Math.random() - .5)
-    state.quizState.currentQuestionIndex = 0
+    shuffledQuestions = questions.sort(() => Math.random() - .5)
+    currentQuestionIndex = 0
     questionContainerElement.classList.remove('hide')
     setNextQuestion();
     countdown();
@@ -66,7 +53,7 @@ function startGame() {
 //  ! next question function
 function setNextQuestion() {
     resetState()
-    showQuestion(state.quizState.shuffledQuestions[state.quizState.currentQuestionIndex])
+    showQuestion(shuffledQuestions[currentQuestionIndex])
 }
 
 function showQuestion(question) {
@@ -85,24 +72,24 @@ function showQuestion(question) {
 // ! reset function
 function resetState() {
     clearStatusClass(document.body)
+
     nextButton.classList.add('hide')
     while (answerButtonsElement.firstChild) {
         answerButtonsElement.removeChild(answerButtonsElement.firstChild)
     }
 }
-
 //  ! select answer function
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
     if (correct === undefined) {
-        state.quizState.timeRemaining -= 10
+        timeRemaining -= 10
     }
     setStatusClass(document.body, correct)
     Array.from(answerButtonsElement.children).forEach(button => {
         setStatusClass(button, button.dataset.correct)
     })
-    if (state.quizState.shuffledQuestions.length > state.quizState.currentQuestionIndex + 1) {
+    if (shuffledQuestions.length > currentQuestionIndex + 1) {
         nextButton.classList.remove('hide')
     } else {
         getInitialsPage()
@@ -127,7 +114,7 @@ function clearStatusClass(element) {
 }
 // ! View highscores function
 viewHighscoresElement.addEventListener('click', viewHighscores)
-state.element.backButton.addEventListener('click', returnBackButton)
+backButton.addEventListener('click', returnBackButton)
 
 
 function viewHighscores() {
@@ -136,7 +123,7 @@ function viewHighscores() {
     viewHighscoresElement.classList.remove('hide')
     highscoresContainerElement.classList.remove('hide')
     questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.remove('hide')
+    backButton.classList.remove('hide')
     clearButton.classList.remove('hide')
     highscoresContainerElement.classList.add('hide')
     finishedContainerElement.classList.add('hide')
@@ -151,7 +138,7 @@ function returnBackButton() {
     viewHighscoresElement.classList.remove('hide')
     highscoresContainerElement.classList.add('hide')
     questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
+    backButton.classList.add('hide')
     clearButton.classList.add('hide')
     resetState()
 }
@@ -165,7 +152,7 @@ function getInitialsPage() {
     viewHighscoresElement.classList.remove('hide')
     highscoresContainerElement.classList.add('hide')
     questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
+    backButton.classList.add('hide')
     clearButton.classList.add('hide')
     finishedContainerElement.classList.remove('hide')
     subButton.classList.remove('hide')
@@ -248,7 +235,7 @@ const questions = [{
     //             correct: false
     //         },
     //         {
-    //             text: 'all of the above',
+    //             numbers: 'all of the above',
     //             correct: true
     //         }
     //     ]
@@ -268,7 +255,7 @@ const questions = [{
     //             correct: false
     //         },
     //         {
-    //             text: 'numbers',
+    //             numbers: 'numbers',
     //             correct: false
     //         }
     //     ]
@@ -288,7 +275,7 @@ const questions = [{
     //             correct: false
     //         },
     //         {
-    //             text: 'javascript',
+    //             numbers: 'javascript',
     //             correct: false
     //         }
     //     ]

@@ -10,4 +10,3 @@ next-btn
 sub-btn
 clear-btn
 javascript
-AmazingFeature
