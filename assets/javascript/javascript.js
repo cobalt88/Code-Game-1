@@ -24,7 +24,7 @@ var state = {
     },
     quizState: {
         score: 0,
-        timeRemaining: 10,
+        timeRemaining: 30,
         timeInterval: null,
         shuffledQuestions: null,
         currentQuestionIndex: null
@@ -33,9 +33,9 @@ var state = {
 
 // ! timer function
 function countdown() {
-    state.quizState.timeRemaining = 10;
+    state.quizState.timeRemaining = 30;
     state.quizState.timeInterval = setInterval(function () {
-        if (state.quizState.timeRemaining > 0) {
+        if (state.quizState.timeRemaining > 0 || "if the game is finished") {
             state.quizState.timeRemaining--;
             timer.textContent = state.quizState.timeRemaining;
         } else {
@@ -133,8 +133,9 @@ state.element.backButton.addEventListener('click', returnBackButton)
 function viewHighscores() {
     startButton.classList.add('hide')
     startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.remove('hide')
+    viewHighscoresElement.classList.add('hide')
+    highscoresContainerElement.classList.add('hide')
+    // highscoresContainerElement.style.display = "flex"
     questionContainerElement.classList.add('hide')
     state.element.backButton.classList.remove('hide')
     clearButton.classList.remove('hide')
@@ -169,6 +170,7 @@ function getInitialsPage() {
     clearButton.classList.add('hide')
     finishedContainerElement.classList.remove('hide')
     subButton.classList.remove('hide')
+    scoreDisplayElement.textContent = state.quizState.timeRemaining
     resetState()
 }
 
