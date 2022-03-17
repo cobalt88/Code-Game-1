@@ -24,7 +24,7 @@ var timeRemaining = 10;
 
 // ! timer function
 function countdown() {
-    timeInterval = setInterval(function () {
+    var timeInterval = setInterval(function () {
         if (timeRemaining > 0) {
             timeRemaining--;
             timer.textContent = timeRemaining;
