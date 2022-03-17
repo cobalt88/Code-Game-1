@@ -28,19 +28,21 @@ var state = {
         timeInterval: null,
         shuffledQuestions: null,
         currentQuestionIndex: null
-    }
+    },
+
+
 }
 
 // ! timer function
 function countdown() {
     state.quizState.timeRemaining = 10;
-    state.quizState.timeInterval = setInterval(function () {
+    timeInterval = setInterval(function () {
         if (state.quizState.timeRemaining > 0) {
             state.quizState.timeRemaining--;
             timer.textContent = state.quizState.timeRemaining;
         } else {
             timer.textContent = (' ');
-            clearInterval(state.quizState.timeInterval)
+            clearInterval(timeInterval)
             getInitialsPage()
         }
     }, 1000)
