@@ -62,7 +62,7 @@ function startGame() {
     countdown();
 }
 
-//  ! questions page
+//  ! next question function
 function setNextQuestion() {
     resetState()
     showQuestion(state.quizState.shuffledQuestions[state.quizState.currentQuestionIndex])
@@ -81,7 +81,7 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
     })
 }
-//  reset function
+// ! reset function
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -90,7 +90,7 @@ function resetState() {
     }
 }
 
-//  select answer function
+//  ! select answer function
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
@@ -108,7 +108,8 @@ function selectAnswer(event) {
     }
 }
 
-//  * function to display feedback
+
+//  !  function to display feedback
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -117,12 +118,15 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// *  function to clear feedback 
+// ! clear feedback 
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 
 }
+// ! View highscores function
+viewHighscoresElement.addEventListener('click', viewHighscores)
+state.element.backButton.addEventListener('click', returnBackButton)
 
 
 function viewHighscores() {
@@ -139,11 +143,7 @@ function viewHighscores() {
     var totalScores = localStorage.getItem('yourScores') || "";
     var scoresArray = totalScores.split("|");
     scoresArray.forEach(userScore => {
-        if (userScore != "") {
-            var listItem = document.createElement("li")
-            listItem.textContent = userScore;
-            scoresContainerElement.appendChild(listItem);
-        }
+        console.log(userScore)
     })
     resetState()
 
@@ -162,6 +162,7 @@ function returnBackButton() {
 
 
 // ! get scores function 
+// subButton.addEventListener('click', viewHighscores)
 
 function getInitialsPage() {
     startingPageElement.classList.add('hide')
@@ -178,7 +179,10 @@ function getInitialsPage() {
     resetState()
 }
 
-//   save scores
+
+
+
+// !  save scores
 var scoreList = document.getElementById('scoresContainer')
 // var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
@@ -186,6 +190,7 @@ subButton.onclick = function (e) {
     e.preventDefault()
     var initialsInput = document.getElementById("initials-Input").value
     var totalScores = localStorage.getItem('yourScores') || "";
+
     initialsInput += ` score: ${state.quizState.timeRemaining} |`;
     totalScores += initialsInput;
     localStorage.setItem("yourScores", totalScores)
@@ -197,45 +202,11 @@ subButton.onclick = function (e) {
 //     scoreList.appendChild(submit)
 // }
 
-// function clearPage() {
-//     clearButton.onclick = function () {
-//         localStorage.clear()
-//         scoreList.innerHTML = " "
-//     }
-// }
-
-
-
-
-// ! View highscores page
-viewHighscoresElement.addEventListener('click', viewHighscores)
-state.element.backButton.addEventListener('click', returnBackButton)
-
-
-function viewHighscores() {
-    startButton.classList.add('hide')
-    startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.add('hide')
-    highscoresContainerElement.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.remove('hide')
-    clearButton.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    finishedContainerElement.classList.add('hide')
-    subButton.classList.add('hide')
-    resetState()
-
-}
-
-function returnBackButton() {
-    startButton.classList.remove('hide')
-    startingPageElement.classList.remove('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
-    clearButton.classList.add('hide')
-    resetState()
+function clearPage() {
+    clearButton.onclick = function () {
+        localStorage.clear()
+        scoreList.innerHTML = " "
+    }
 }
 
 // ! Questions start

@@ -62,7 +62,7 @@ function startGame() {
     countdown();
 }
 
-//  ! questions page
+//  ! next question function
 function setNextQuestion() {
     resetState()
     showQuestion(state.quizState.shuffledQuestions[state.quizState.currentQuestionIndex])
@@ -81,7 +81,7 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
     })
 }
-//  reset function
+// ! reset function
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -90,7 +90,7 @@ function resetState() {
     }
 }
 
-//  select answer function
+//  ! select answer function
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
@@ -108,7 +108,8 @@ function selectAnswer(event) {
     }
 }
 
-//  * function to display feedback
+
+//  !  function to display feedback
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -117,97 +118,13 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// *  function to clear feedback 
+// ! clear feedback 
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 
 }
-
-
-function viewHighscores() {
-    startButton.classList.add('hide')
-    startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.remove('hide');
-    clearButton.classList.remove('hide');
-    finishedContainerElement.classList.add('hide');
-    subButton.classList.add('hide');
-
-    var totalScores = localStorage.getItem('yourScores') || "";
-    var scoresArray = totalScores.split("|");
-    scoresArray.forEach(userScore => {
-        if (userScore != "") {
-            var listItem = document.createElement("li")
-            listItem.textContent = userScore;
-            scoresContainerElement.appendChild(listItem);
-        }
-    })
-    resetState()
-
-}
-
-function returnBackButton() {
-    startButton.classList.remove('hide')
-    startingPageElement.classList.remove('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
-    clearButton.classList.add('hide')
-    resetState()
-}
-
-
-// ! get scores function 
-
-function getInitialsPage() {
-    startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
-    clearButton.classList.add('hide')
-    finishedContainerElement.classList.remove('hide')
-    subButton.classList.remove('hide')
-    scoreDisplayElement.textContent = state.quizState.timeRemaining
-    clearInterval(state.quizState.timeInterval)
-    timer.classList.add('hide')
-    resetState()
-}
-
-//   save scores
-var scoreList = document.getElementById('scoresContainer')
-// var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
-
-subButton.onclick = function (e) {
-    e.preventDefault()
-    var initialsInput = document.getElementById("initials-Input").value
-    var totalScores = localStorage.getItem('yourScores') || "";
-    initialsInput += ` score: ${state.quizState.timeRemaining} |`;
-    totalScores += initialsInput;
-    localStorage.setItem("yourScores", totalScores)
-}
-
-// for (i = 0; i < totalScores.length; i++) {
-//     submit.document.createElement("li")
-//     submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
-//     scoreList.appendChild(submit)
-// }
-
-// function clearPage() {
-//     clearButton.onclick = function () {
-//         localStorage.clear()
-//         scoreList.innerHTML = " "
-//     }
-// }
-
-
-
-
-// ! View highscores page
+// ! View highscores function
 viewHighscoresElement.addEventListener('click', viewHighscores)
 state.element.backButton.addEventListener('click', returnBackButton)
 
@@ -215,7 +132,7 @@ state.element.backButton.addEventListener('click', returnBackButton)
 function viewHighscores() {
     startButton.classList.add('hide')
     startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.add('hide')
+    viewHighscoresElement.classList.remove('hide')
     highscoresContainerElement.classList.remove('hide')
     questionContainerElement.classList.add('hide')
     state.element.backButton.classList.remove('hide')
@@ -236,6 +153,50 @@ function returnBackButton() {
     state.element.backButton.classList.add('hide')
     clearButton.classList.add('hide')
     resetState()
+}
+
+
+// ! get scores function 
+subButton.addEventListener('click', viewHighscores)
+
+function getInitialsPage() {
+    startingPageElement.classList.add('hide')
+    viewHighscoresElement.classList.remove('hide')
+    highscoresContainerElement.classList.add('hide')
+    questionContainerElement.classList.add('hide')
+    state.element.backButton.classList.add('hide')
+    clearButton.classList.add('hide')
+    finishedContainerElement.classList.remove('hide')
+    subButton.classList.remove('hide')
+    scoreDisplayElement.textContent = state.quizState.timeRemaining
+    clearInterval(state.quizState.timeInterval)
+    timer.classList.add('hide')
+    resetState()
+}
+
+
+
+
+// !  save scores
+var scoreList = document.getElementById('scoresContainer')
+var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
+
+subButton.onclick = function () {
+    var initialsInput = document.getElementById("initials-Input").textContent;
+
+}
+
+for (i = 0; i < totalScores.length; i++) {
+    submit.document.createElement("li")
+    submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
+    scoreList.appendChild(submit)
+}
+
+function clearPage() {
+    clearButton.onclick = function () {
+        localStorage.clear()
+        scoreList.innerHTML = " "
+    }
 }
 
 // ! Questions start
