@@ -135,20 +135,11 @@ function viewHighscores() {
     viewHighscoresElement.classList.remove('hide')
     highscoresContainerElement.classList.remove('hide')
     questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.remove('hide');
-    clearButton.classList.remove('hide');
-    finishedContainerElement.classList.add('hide');
-    subButton.classList.add('hide');
-
-    var totalScores = localStorage.getItem('yourScores') || "";
-    var scoresArray = totalScores.split("|");
-    scoresArray.forEach(userScore => {
-        if (userScore != "") {
-            var listItem = document.createElement("li")
-            listItem.textContent = userScore;
-            scoresContainerElement.appendChild(listItem);
-        }
-    })
+    state.element.backButton.classList.remove('hide')
+    clearButton.classList.remove('hide')
+    highscoresContainerElement.classList.add('hide')
+    finishedContainerElement.classList.add('hide')
+    subButton.classList.add('hide')
     resetState()
 
 }
@@ -166,6 +157,7 @@ function returnBackButton() {
 
 
 // ! get scores function 
+subButton.addEventListener('click', viewHighscores)
 
 function getInitialsPage() {
     startingPageElement.classList.add('hide')
@@ -187,29 +179,25 @@ function getInitialsPage() {
 
 // !  save scores
 var scoreList = document.getElementById('scoresContainer')
-// var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
+var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
-subButton.onclick = function (e) {
-    e.preventDefault()
-    var initialsInput = document.getElementById("initials-Input").value
-    var totalScores = localStorage.getItem('yourScores') || "";
-    initialsInput += ` score: ${state.quizState.timeRemaining} |`;
-    totalScores += initialsInput;
-    localStorage.setItem("yourScores", totalScores)
+subButton.onclick = function () {
+    var initialsInput = document.getElementById("initials-Input").textContent;
+
 }
 
-// for (i = 0; i < totalScores.length; i++) {
-//     submit.document.createElement("li")
-//     submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
-//     scoreList.appendChild(submit)
-// }
+for (i = 0; i < totalScores.length; i++) {
+    submit.document.createElement("li")
+    submit.textContent = totalScores[i].initials + " : " + totalScores[i].score
+    scoreList.appendChild(submit)
+}
 
-// function clearPage() {
-//     clearButton.onclick = function () {
-//         localStorage.clear()
-//         scoreList.innerHTML = " "
-//     }
-// }
+function clearPage() {
+    clearButton.onclick = function () {
+        localStorage.clear()
+        scoreList.innerHTML = " "
+    }
+}
 
 // ! Questions start
 const questions = [{
