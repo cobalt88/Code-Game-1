@@ -143,11 +143,7 @@ function viewHighscores() {
     var totalScores = localStorage.getItem('yourScores') || "";
     var scoresArray = totalScores.split("|");
     scoresArray.forEach(userScore => {
-        if (userScore != "") {
-            var listItem = document.createElement("li")
-            listItem.textContent = userScore;
-            scoresContainerElement.appendChild(listItem);
-        }
+        console.log(userScore)
     })
     resetState()
 
@@ -166,6 +162,7 @@ function returnBackButton() {
 
 
 // ! get scores function 
+// subButton.addEventListener('click', viewHighscores)
 
 function getInitialsPage() {
     startingPageElement.classList.add('hide')
@@ -193,6 +190,7 @@ subButton.onclick = function (e) {
     e.preventDefault()
     var initialsInput = document.getElementById("initials-Input").value
     var totalScores = localStorage.getItem('yourScores') || "";
+
     initialsInput += ` score: ${state.quizState.timeRemaining} |`;
     totalScores += initialsInput;
     localStorage.setItem("yourScores", totalScores)
@@ -204,12 +202,12 @@ subButton.onclick = function (e) {
 //     scoreList.appendChild(submit)
 // }
 
-// function clearPage() {
-//     clearButton.onclick = function () {
-//         localStorage.clear()
-//         scoreList.innerHTML = " "
-//     }
-// }
+function clearPage() {
+    clearButton.onclick = function () {
+        localStorage.clear()
+        scoreList.innerHTML = " "
+    }
+}
 
 // ! Questions start
 const questions = [{
