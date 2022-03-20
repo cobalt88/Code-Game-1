@@ -160,7 +160,7 @@ function viewHighscores() {
 function returnBackButton() {
     startButton.classList.remove('hide')
     startingPageElement.classList.remove('hide')
-    viewHighscoresElement.classList.remove('hide')
+    viewHighscoresElement.classList.add('hide')
     highscoresContainerElement.classList.add('hide')
     questionContainerElement.classList.add('hide')
     state.element.backButton.classList.add('hide')

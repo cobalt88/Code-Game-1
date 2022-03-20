@@ -13,3 +13,7 @@ javascript
 ul
 onclick
 disableBtn
+timeDisplay
+Highscores
+viewHighscore
+href
