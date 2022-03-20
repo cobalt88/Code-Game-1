@@ -196,7 +196,6 @@ var scoreList = document.getElementById('scoresContainer')
 // var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
 subButton.onclick = function (e) {
-    alert("Score saved to continue please press view Highscores")
     e.preventDefault()
     var initialsInput = document.getElementById("initials-Input").value
     var totalScores = localStorage.getItem('yourScores') || "";
@@ -205,6 +204,9 @@ subButton.onclick = function (e) {
     totalScores += initialsInput;
     localStorage.setItem("yourScores", totalScores);
 
+    subButton.onclick = function (disable) {
+        alert("Score saved to continue please press view Highscores")
+    }
 }
 
 // ! clear high scores

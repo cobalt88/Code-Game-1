@@ -11,3 +11,5 @@ sub-btn
 clear-btn
 javascript
 ul
+onclick
+disableBtn
