@@ -21,7 +21,7 @@ var state = {
     },
     quizState: {
         score: 0,
-        timeRemaining: 30,
+        timeRemaining: 60,
         timeInterval: null,
         shuffledQuestions: null,
         currentQuestionIndex: null
@@ -30,7 +30,7 @@ var state = {
 
 // ! timer function
 function countdown() {
-    state.quizState.timeRemaining = 30;
+    state.quizState.timeRemaining = 60;
     timer.textContent = state.quizState.timeRemaining;
     state.quizState.timeInterval = setInterval(function () {
         if (state.quizState.timeRemaining > 0) {
@@ -62,7 +62,7 @@ function startGame() {
     countdown();
 }
 
-//  ! questions page
+//  ! next question function
 function setNextQuestion() {
     resetState()
     showQuestion(state.quizState.shuffledQuestions[state.quizState.currentQuestionIndex])
@@ -81,7 +81,7 @@ function showQuestion(question) {
         answerButtonsElement.appendChild(button)
     })
 }
-//  reset function
+// ! reset function
 function resetState() {
     clearStatusClass(document.body)
     nextButton.classList.add('hide')
@@ -90,7 +90,7 @@ function resetState() {
     }
 }
 
-//  select answer function
+//  ! select answer function
 function selectAnswer(event) {
     const selectedButton = event.target
     const correct = selectedButton.dataset.correct
@@ -108,7 +108,8 @@ function selectAnswer(event) {
     }
 }
 
-//  * function to display feedback
+
+//  !  function to display feedback
 function setStatusClass(element, correct) {
     clearStatusClass(element)
     if (correct) {
@@ -117,12 +118,15 @@ function setStatusClass(element, correct) {
         element.classList.add('wrong')
     }
 }
-// *  function to clear feedback 
+// ! clear feedback 
 function clearStatusClass(element) {
     element.classList.remove('correct')
     element.classList.remove('wrong')
 
 }
+// ! View highscores function
+viewHighscoresElement.addEventListener('click', viewHighscores)
+state.element.backButton.addEventListener('click', returnBackButton)
 
 
 function viewHighscores() {
@@ -162,6 +166,7 @@ function returnBackButton() {
 
 
 // ! get scores function 
+// subButton.addEventListener('click', viewHighscores)
 
 function getInitialsPage() {
     startingPageElement.classList.add('hide')
@@ -178,7 +183,10 @@ function getInitialsPage() {
     resetState()
 }
 
-//   save scores
+
+
+
+// !  save scores
 var scoreList = document.getElementById('scoresContainer')
 // var totalScores = JSON.parse(localStorage.getItem('totalScores')) || []
 
@@ -186,6 +194,7 @@ subButton.onclick = function (e) {
     e.preventDefault()
     var initialsInput = document.getElementById("initials-Input").value
     var totalScores = localStorage.getItem('yourScores') || "";
+
     initialsInput += ` score: ${state.quizState.timeRemaining} |`;
     totalScores += initialsInput;
     localStorage.setItem("yourScores", totalScores)
@@ -197,45 +206,11 @@ subButton.onclick = function (e) {
 //     scoreList.appendChild(submit)
 // }
 
-// function clearPage() {
-//     clearButton.onclick = function () {
-//         localStorage.clear()
-//         scoreList.innerHTML = " "
-//     }
-// }
-
-
-
-
-// ! View highscores page
-viewHighscoresElement.addEventListener('click', viewHighscores)
-state.element.backButton.addEventListener('click', returnBackButton)
-
-
-function viewHighscores() {
-    startButton.classList.add('hide')
-    startingPageElement.classList.add('hide')
-    viewHighscoresElement.classList.add('hide')
-    highscoresContainerElement.classList.remove('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.remove('hide')
-    clearButton.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    finishedContainerElement.classList.add('hide')
-    subButton.classList.add('hide')
-    resetState()
-
-}
-
-function returnBackButton() {
-    startButton.classList.remove('hide')
-    startingPageElement.classList.remove('hide')
-    viewHighscoresElement.classList.remove('hide')
-    highscoresContainerElement.classList.add('hide')
-    questionContainerElement.classList.add('hide')
-    state.element.backButton.classList.add('hide')
-    clearButton.classList.add('hide')
-    resetState()
+function clearPage() {
+    clearButton.onclick = function () {
+        localStorage.clear()
+        scoreList.innerHTML = " "
+    }
 }
 
 // ! Questions start
@@ -279,64 +254,64 @@ const questions = [{
             }
         ]
     },
-    // {
-    //     question: 'Arrays in Javascript can be used to store_____.',
-    //     answers: [{
-    //             text: 'numbers and strings',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'other arrays',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'booleans',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'all of the above',
-    //             correct: true
-    //         }
-    //     ]
-    // },
-    // {
-    //     question: 'String values must be enclosed within ____ when being assigned to variables.',
-    //     answers: [{
-    //             text: 'commas',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'quotes',
-    //             correct: true
-    //         },
-    //         {
-    //             text: 'brackets',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'numbers',
-    //             correct: false
-    //         }
-    //     ]
-    // },
-    // {
-    //     question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
-    //     answers: [{
-    //             text: 'console.log()',
-    //             correct: true
-    //         },
-    //         {
-    //             text: 'terminal',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'for loops',
-    //             correct: false
-    //         },
-    //         {
-    //             text: 'javascript',
-    //             correct: false
-    //         }
-    //     ]
-    // },
+    {
+        question: 'Arrays in Javascript can be used to store_____.',
+        answers: [{
+                text: 'numbers and strings',
+                correct: false
+            },
+            {
+                text: 'other arrays',
+                correct: false
+            },
+            {
+                text: 'booleans',
+                correct: false
+            },
+            {
+                text: 'all of the above',
+                correct: true
+            }
+        ]
+    },
+    {
+        question: 'String values must be enclosed within ____ when being assigned to variables.',
+        answers: [{
+                text: 'commas',
+                correct: false
+            },
+            {
+                text: 'quotes',
+                correct: true
+            },
+            {
+                text: 'brackets',
+                correct: false
+            },
+            {
+                text: 'numbers',
+                correct: false
+            }
+        ]
+    },
+    {
+        question: 'A very useful tool used during development and debugging that prints content to the debugger is ____',
+        answers: [{
+                text: 'console.log()',
+                correct: true
+            },
+            {
+                text: 'terminal',
+                correct: false
+            },
+            {
+                text: 'for loops',
+                correct: false
+            },
+            {
+                text: 'javascript',
+                correct: false
+            }
+        ]
+    }
 ]
